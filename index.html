@@ -30,14 +30,7 @@
 
         function getLocation() {
             if (navigator.geolocation) {
-                // 檢查是否為手機設備
-                var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                if (isMobile) {
-                    navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
-                } else {
-                    document.getElementById("location").innerHTML = "這是一台電腦，不抓取位置。";
-                    changeColor();
-                }
+                navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
             } else {
                 document.getElementById("location").innerHTML = "瀏覽器不支援地理定位。";
                 changeColor();
@@ -60,4 +53,5 @@
     <div id="location" style="padding: 10px;">正在取得位置...</div>
 </body>
 </html>
+
 
