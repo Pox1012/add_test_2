@@ -7,6 +7,7 @@
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
             document.getElementById("location").innerHTML = "緯度: " + latitude + "<br>經度: " + longitude;
+            changeColor();
         }
 
         function showError(error) {
@@ -24,6 +25,7 @@
                     document.getElementById("location").innerHTML = "未知錯誤。";
                     break;
             }
+            changeColor();
         }
 
         function getLocation() {
@@ -31,7 +33,13 @@
                 navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
             } else {
                 document.getElementById("location").innerHTML = "瀏覽器不支援地理定位。";
+                changeColor();
             }
+        }
+
+        function changeColor() {
+            var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById("location").style.backgroundColor = randomColor;
         }
 
         window.onload = function() {
@@ -42,7 +50,7 @@
 </head>
 <body>
     <h1>使用者位置</h1>
-    <div id="location">正在取得位置...</div>
+    <div id="location" style="padding: 10px;">正在取得位置...</div>
 </body>
 </html>
 
